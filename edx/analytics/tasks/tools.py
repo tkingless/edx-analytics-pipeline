@@ -307,3 +307,9 @@ class EventsPerWeek(EventCounter):
 
         iso_year, iso_week_number, iso_weekday = dt.isocalendar()
         return (str(iso_year), str(iso_week_number))
+
+
+class EventsPerDay(EventCounter):
+
+    def get_grouping_key(self, _line, _event, date_string):
+        return (date_string,)

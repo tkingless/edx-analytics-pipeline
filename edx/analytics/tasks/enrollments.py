@@ -664,7 +664,7 @@ class EnrollmentByGenderTask(EnrollmentTask):
     def query(self):
         return """
             SELECT
-                ce.date,
+                ce.`date`,
                 ce.course_id,
                 IF(p.gender != '', p.gender, NULL),
                 SUM(ce.at_end),
@@ -672,7 +672,7 @@ class EnrollmentByGenderTask(EnrollmentTask):
             FROM course_enrollment ce
             LEFT OUTER JOIN auth_userprofile p ON p.user_id = ce.user_id
             GROUP BY
-                ce.date,
+                ce.`date`,
                 ce.course_id,
                 IF(p.gender != '', p.gender, NULL)
         """
@@ -699,16 +699,16 @@ class EnrollmentByBirthYearTask(EnrollmentTask):
     def query(self):
         query = """
             SELECT
-                ce.date,
+                ce.`date`,
                 ce.course_id,
                 p.year_of_birth,
                 SUM(ce.at_end),
                 COUNT(ce.user_id)
             FROM course_enrollment ce
             LEFT OUTER JOIN auth_userprofile p ON p.user_id = ce.user_id
-            WHERE ce.date = '{date}'
+            WHERE ce.`date` = '{date}'
             GROUP BY
-                ce.date,
+                ce.`date`,
                 ce.course_id,
                 p.year_of_birth
         """.format(date=self.query_date)
@@ -736,7 +736,7 @@ class EnrollmentByEducationLevelTask(EnrollmentTask):
     def query(self):
         query = """
             SELECT
-                ce.date,
+                ce.`date`,
                 ce.course_id,
                 CASE p.level_of_education
                     WHEN 'el'    THEN 'primary'
@@ -756,9 +756,9 @@ class EnrollmentByEducationLevelTask(EnrollmentTask):
                 COUNT(ce.user_id)
             FROM course_enrollment ce
             LEFT OUTER JOIN auth_userprofile p ON p.user_id = ce.user_id
-            WHERE ce.date = '{date}'
+            WHERE ce.`date` = '{date}'
             GROUP BY
-                ce.date,
+                ce.`date`,
                 ce.course_id,
                 CASE p.level_of_education
                     WHEN 'el'    THEN 'primary'
@@ -799,14 +799,14 @@ class EnrollmentByModeTask(EnrollmentTask):
     def query(self):
         query = """
             SELECT
-                ce.date,
+                ce.`date`,
                 ce.course_id,
                 ce.mode,
                 SUM(ce.at_end),
                 COUNT(ce.user_id)
             FROM course_enrollment ce
             GROUP BY
-                ce.date,
+                ce.`date`,
                 ce.course_id,
                 ce.mode
         """.format(date=self.query_date)
@@ -835,13 +835,13 @@ class EnrollmentDailyTask(EnrollmentTask):
         query = """
             SELECT
                 ce.course_id,
-                ce.date,
+                ce.`date`,
                 SUM(ce.at_end),
                 COUNT(ce.user_id)
             FROM course_enrollment ce
             GROUP BY
                 ce.course_id,
-                ce.date
+                ce.`date`
         """.format(date=self.query_date)
         return query
 

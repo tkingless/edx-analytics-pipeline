@@ -21,13 +21,12 @@ DEFAULT_NUM_DAYS = 28
 class CourseEnrollmentCountMixin(MapReduceJobTaskMixin):
     """ Provides common parameters used in executive report tasks """
     name = luigi.Parameter()
-    src = luigi.Parameter(
-        is_list=True,
+    src = luigi.ListParameter(
         config_path={'section': 'enrollment-reports', 'name': 'src'},
         description='Location of daily enrollments per date. The format is a '
         'Hadoop TSV file, with fields `course_id`, `date` and `count`.',
     )
-    include = luigi.Parameter(is_list=True, default=('*',))
+    include = luigi.ListParameter(default=('*',))
     weeks = luigi.IntParameter(
         default=DEFAULT_NUM_WEEKS,
         description='Number of weeks from the end date to request.',

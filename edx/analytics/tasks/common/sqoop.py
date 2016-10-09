@@ -74,8 +74,7 @@ class SqoopImportTask(OverwriteOutputMixin, luigi.hadoop.BaseHadoopJobTask):
         'no spaces should be embedded and special characters should '
         'be escaped.  For example:  --where "id\<50". ',
     )
-    columns = luigi.Parameter(
-        is_list=True,
+    columns = luigi.ListParameter(
         default=[],
         description='A list of column names to be included.  Default is to include all columns.'
     )

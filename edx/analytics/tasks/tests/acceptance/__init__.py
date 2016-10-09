@@ -187,7 +187,7 @@ class AcceptanceTestCase(unittest.TestCase):
             },
             'manifest': {
                 'path': url_path_join(self.test_root, 'manifest'),
-                'lib_jar': self.config['oddjob_jar']
+                'lib_jar': json.dumps([self.config['oddjob_jar'],])
             },
             'database-import': {
                 'credentials': self.config['credentials_file_url'],
@@ -209,7 +209,7 @@ class AcceptanceTestCase(unittest.TestCase):
                 'geolocation_data': self.config['geolocation_data']
             },
             'event-logs': {
-                'source': self.test_src
+                'source': json.dumps([self.test_src,])
             },
             'segment-logs': {
                 'source': self.test_src

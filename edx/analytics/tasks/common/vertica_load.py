@@ -492,9 +492,9 @@ class SchemaManagementTask(VerticaCopyTaskMixin, luigi.Task):
 
     date = luigi.DateParameter()
 
-    roles = luigi.Parameter(
-        is_list=True,
+    roles = luigi.ListParameter(
         config_path={'section': 'vertica-export', 'name': 'roles'},
+        description='A list of roles that should be given access to tables in the schema.',
     )
 
     def __init__(self, *args, **kwargs):

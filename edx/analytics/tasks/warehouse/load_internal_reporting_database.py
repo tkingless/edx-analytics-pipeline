@@ -201,8 +201,7 @@ class ImportMysqlToVerticaTask(MysqlToVerticaTaskMixin, luigi.WrapperTask):
         significant=False,
     )
 
-    exclude = luigi.Parameter(
-        is_list=True,
+    exclude = luigi.ListParameter(
         default=(),
     )
 

@@ -11,7 +11,7 @@ from urlparse import urlparse, parse_qsl
 import uuid
 
 
-STATIC_FILES_PATH = os.path.join(sys.prefix, 'share', 'edx.analytics.tasks')
+STATIC_FILES_PATH = os.path.join(sys.prefix, '', 'edx.analytics.tasks')
 EC2_INVENTORY_PATH = os.path.join(STATIC_FILES_PATH, 'ec2.py')
 
 REMOTE_DATA_DIR = '/var/lib/analytics-tasks'
@@ -284,7 +284,7 @@ def run_ansible(args, arguments, executable='ansible'):
         executable (str): The executable script to invoke on the command line.  Defaults to "ansible".
 
     """
-    log.('run_ansible() called');
+    log('run_ansible() called');
     if arguments.host:
         inventory_file_path = arguments.host + ','
     else:

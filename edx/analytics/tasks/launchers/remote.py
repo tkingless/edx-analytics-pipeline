@@ -11,7 +11,7 @@ from urlparse import urlparse, parse_qsl
 import uuid
 
 
-STATIC_FILES_PATH = os.path.join(sys.prefix, '', 'edx.analytics.tasks')
+STATIC_FILES_PATH = os.path.join(sys.prefix, 'share', 'edx.analytics.tasks')
 EC2_INVENTORY_PATH = os.path.join(STATIC_FILES_PATH, 'ec2.py')
 
 REMOTE_DATA_DIR = '/var/lib/analytics-tasks'

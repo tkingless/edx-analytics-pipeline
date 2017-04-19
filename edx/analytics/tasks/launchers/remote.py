@@ -78,6 +78,8 @@ def run_task_playbook(inventory, arguments, uid):
         arguments (argparse.Namespace): The arguments that were passed in on the command line.
         uid (str): A unique identifier for this task execution.
     """
+    log('run_task_playbook() called.')
+
     if not arguments.skip_setup:
         extra_vars = convert_args_to_extra_vars(arguments, uid)
         args = ['task.yml', '-e', extra_vars]
@@ -282,6 +284,7 @@ def run_ansible(args, arguments, executable='ansible'):
         executable (str): The executable script to invoke on the command line.  Defaults to "ansible".
 
     """
+    log.('run_ansible() called');
     if arguments.host:
         inventory_file_path = arguments.host + ','
     else:

@@ -2,7 +2,7 @@
 
 - name: Configure luigi
   hosts: "{{ name }}"
-  gather_facts: False
+  gather_facts: True
   sudo: True
   vars:
     write_luigi_config: "yes"

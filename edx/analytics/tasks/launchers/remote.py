@@ -290,7 +290,7 @@ def run_ansible(args, arguments, executable='ansible'):
     else:
         inventory_file_path = EC2_INVENTORY_PATH
     executable_path = os.path.join(sys.prefix, 'bin', executable)
-    command = [executable_path, '-i', inventory_file_path] + list(args)
+    command = [executable_path, '-K', '-i', inventory_file_path] + list(args)
     if arguments.user:
         command.extend(['-u', arguments.user])
     if arguments.private_key:
